@@ -1,0 +1,35 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name:
+  datasource:
+    host: ${WRITE_DB_HOST:localhost}
+    url: jdbc:postgresql://localhost:5432/schoolvaccinationdata
+    username: ${WRITE_DB_USER:postgres}
+    password: ${WRITE_DB_PASSWORD:Pass@word79999}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: ${SHOW_SQL:false}
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    properties:
+      hibernate:
+        default_schema: ${DB_SCHEMA:public}
+        format_sql: ${FORMAT_SQL:true}
+        generate_statistics: ${GENERATE_SQL_STATISTICS:false}
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+logging:
+  level:
+    root: INFO
+    com.schoolvaccination.backend.*: DEBUG
+  profiles:
+    active: dev
+application:
+  feature:
+    enable-fraud-detection: true
